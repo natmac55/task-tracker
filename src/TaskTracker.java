@@ -19,9 +19,11 @@ public class TaskTracker extends JFrame {
         JTextField taskInput = new JTextField(20);
         JButton addButton = new JButton("Add Task");
         JButton removeButton = new JButton("Remove Task");
+        JButton saveButton = new JButton("Save");
         inputPanel.add(taskInput);
         inputPanel.add(addButton);
         inputPanel.add(removeButton);
+        inputPanel.add(saveButton);
         add(inputPanel, BorderLayout.NORTH);
 
         // Task list area
@@ -88,6 +90,13 @@ public class TaskTracker extends JFrame {
         });
 
         setVisible(true);
+
+        // Save tasks button logic
+        saveButton.addActionListener(e -> {
+            saveTasksToFile();
+            JOptionPane.showMessageDialog(inputPanel,
+                    "Data has been saved.");
+        });
     }
 
     private void loadTasksFromFile() {
